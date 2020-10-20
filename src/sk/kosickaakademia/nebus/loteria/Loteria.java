@@ -4,17 +4,45 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Loteria {
-    int[] tip = new int[5];
-    int[] zreb = new int[10];
+    private final int TIP_CISLO = 5;
+    private final int ZREB_CISLO = 10;
+    private final int MAXIMUM = 20;
+
+    private int[] tip = new int[TIP_CISLO];
+    private int[] zreb = new int[ZREB_CISLO];
 
     public static void main(String[] args) {
+
         Loteria loteria = new Loteria();
+
+        //0
+        int vklad = loteria.zadajVklad();
         //1
-        loteria.zadajCisla();
+        System.out.println("Chces zadat svoje cisla ty tak stalc 1 ak ich ma " +
+                "vygenerovat PC stlac 2");
+        Scanner sc = new Scanner(System.in);
+        int cislo = sc.nextInt();
+        if(cislo == 1){
+            loteria.zadajCisla();
+        }else{
+            loteria.randomPcForUser();
+        }
         //2
         loteria.randomPC();
         //3
-        loteria.kolkoSaZhoduje();
+        int uhadnuteCisla = loteria.kolkoSaZhoduje();
+        //4
+        loteria.vypisVyhru(vklad, uhadnuteCisla);
+    }
+
+    public int zadajVklad(){
+        int vklad;
+        Scanner sc = new Scanner(System.in);
+        do{
+            System.out.println("Zadaj vklad: ");
+            vklad = sc.nextInt();
+        }while(vklad <= 0);
+        return vklad;
     }
 
     public void zadajCisla(){
@@ -24,10 +52,10 @@ public class Loteria {
         while(true){
             System.out.println("Zadaj " + (i+1) + ". cislo");
             cislo = sc.nextInt();
-            if(cislo > 0 && cislo < 21 && nachadzaSa(cislo)){
+            if(cislo > 0 && cislo < MAXIMUM+1 && nachadzaSa(cislo)){
                 tip[i] = cislo;
                 i++;
-                if(i == 5){
+                if(i == TIP_CISLO){
                     break;
                 }
             }
@@ -54,17 +82,38 @@ public class Loteria {
         }
     }
 
+    public void randomPcForUser(){
+        int cislo;
+        int i = 0;
+
+        while(true){
+            cislo = (int)(Math.random()*MAXIMUM+1);
+            if(nachadzaSa(cislo)){
+                tip[i] = cislo;
+                i++;
+            }
+            if(i == TIP_CISLO){
+                break;
+            }
+        }
+        System.out.println();
+        System.out.println("Tvoje cisla vygenerovane PC su: ");
+        for (i = 0; i < tip.length; i++){
+            System.out.print(tip[i] + " ");
+        }
+    }
+
     public void randomPC(){
         int cislo;
         int i = 0;
 
         while(true){
-            cislo = (int)(Math.random()*20+1);
+            cislo = (int)(Math.random()*MAXIMUM+1);
             if(overCisloPC(cislo)){
                 zreb[i] = cislo;
                 i++;
             }
-            if(i == 10){
+            if(i == ZREB_CISLO){
                 break;
             }
         }
@@ -90,7 +139,7 @@ public class Loteria {
         }
     }
 
-    public void kolkoSaZhoduje(){
+    public int kolkoSaZhoduje(){
         int pocitadlo = 0;
         for(int i = 0; i < tip.length; i++){
             for(int j = 0; j < zreb.length; j++){
@@ -101,5 +150,29 @@ public class Loteria {
         }
         System.out.println();
         System.out.println("Uhadol si: " +pocitadlo+ " cisel!");
+        return pocitadlo;
+    }
+
+    public void vypisVyhru(int vklad, int uhadnuteCisla){
+        switch (uhadnuteCisla){
+            case (0):
+                System.out.println("Vyhral si 0 €");
+                break;
+            case (1):
+                System.out.println("Vyhral si 0 €");
+                break;
+            case (2):
+                System.out.println("Vyhral si " + vklad*2 + "€");
+                break;
+            case (3):
+                System.out.println("Vyhral si " + vklad*15 + "€");
+                break;
+            case (4):
+                System.out.println("Vyhral si " + vklad*500 + "€");
+                break;
+            case (5):
+                System.out.println("Vyhral si " + vklad*10000 + "€");
+                break;
+        }
     }
 }
