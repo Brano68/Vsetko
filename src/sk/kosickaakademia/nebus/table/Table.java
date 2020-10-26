@@ -1,10 +1,14 @@
 package sk.kosickaakademia.nebus.table;
 
+import javax.naming.PartialResultException;
+
 public class Table {
     private int[][] arr = new int[][]{ {2,5,8,0},{0,1,7,9},{-9,1,8,14}};
+    private static int[][] polexx = new int[][]{ {2,5,8,0},{0,1,7,9},{-9,1,8,14}};
 
     public static void main(String[] args) {
         Table t = new Table();
+
         int valueMin = t.min();
         int valueMax = t.max();
         double valueAverage = t.avg();
@@ -15,6 +19,11 @@ public class Table {
         System.out.println("Average value is "+valueAverage);
         //diagonala sucet
         System.out.println("Sum is "+valueSum);
+
+        int[][] matica = Table.transportovana(polexx);
+        t.printMaticu(t.arr);
+        System.out.println();
+        t.printMaticu(matica);
     }
 
     public int min(){
@@ -68,6 +77,28 @@ public class Table {
             }
         }
         return sum;
+    }
+
+    public static int[][] transportovana(int[][] p){
+    int row = p.length;
+    int collumn = p[0].length;
+    int[][] transponovanaMatica = new int[collumn][row];
+
+    for(int i = 0; i < row; i++){
+        for(int j = 0; j < collumn; j++){
+            transponovanaMatica[j][i] = p[i][j];
+        }
+    }
+        return transponovanaMatica;
+    }
+
+    public void printMaticu(int[][] matica){
+        for(int i = 0; i < matica.length; i++){
+            for(int j = 0; j < matica[0].length; j++){
+                System.out.print(matica[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 
 
