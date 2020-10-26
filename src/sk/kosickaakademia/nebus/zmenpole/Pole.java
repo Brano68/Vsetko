@@ -22,7 +22,8 @@ public class Pole {
                 }
             }
         }
-        ////vypise
+
+        ////vypise uz po zmene
         for(int i = 0; i < arr.length; i++){
             for(int j = 0; j < arr[0].length; j++){
             System.out.print(arr[i][j] + " ");
@@ -31,11 +32,15 @@ public class Pole {
         }
     }
 
+    //tota funkcia ti vrati absolutnu hodnotu
     public static int absolutnaHodnota(int cislo){
         cislo = cislo * (-1);
         return cislo;
     }
 
+    //tota funkcia ti urobi parne cislo ked sa konci neparne 1 alebo 3
+    //tak znizi o hodnotu -1
+    //inak zvysi o +1
     public static int urobParneCislo(int cislo){
         if(cislo%10 == 1 || cislo%10 == 3){
             return cislo-1;
@@ -44,6 +49,7 @@ public class Pole {
         }
     }
 
+    //tota funkcia ti vrati nahodne cislo od 10 do 99
     public static int vygenerujCislo(){
         Random random = new Random();
         int cislo = random.nextInt(90)+10;
