@@ -19,6 +19,11 @@ public class Student {
         this.className = className;
     }
 
+    public Student(String firstName, String lastname, Grades grades, ClassName className, LocalDate dob){
+        this(firstName, lastname, grades, className);
+        this.dob = dob;
+    }
+
 
     public void setSalary(int salary) {
         this.salary = salary;
@@ -51,4 +56,10 @@ public class Student {
     public Grades getGrades() {
         return grades;
     }
+
+    public String printStudent(){
+        return getFirstName()+" "+getLastName();
+    }
+
+
 }
