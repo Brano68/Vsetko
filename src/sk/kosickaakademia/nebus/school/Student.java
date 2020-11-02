@@ -1,17 +1,16 @@
 package sk.kosickaakademia.nebus.school;
 
 import java.util.Date;
-import java.time.LocalDate;
-import java.time.Month;
 
 public class Student {
     private String firstName;
     private String lastName;
     private ClassName className;
     private int salary;
-    private LocalDate dob;
+    private Date dob;
     private Grades grades;
 
+    //konstruktor prvy
     public Student(String firstName, String lastname, Grades grades, ClassName className){
         this.firstName = firstName;
         this.lastName = lastname;
@@ -19,17 +18,18 @@ public class Student {
         this.className = className;
     }
 
-    public Student(String firstName, String lastname, Grades grades, ClassName className, LocalDate dob){
+    //konstruktor druhy
+    public Student(String firstName, String lastname, Grades grades, ClassName className, Date dob){
         this(firstName, lastname, grades, className);
         this.dob = dob;
     }
 
-
+    //settery a gettery
     public void setSalary(int salary) {
         this.salary = salary;
     }
 
-    public void setDob(LocalDate dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 
@@ -49,7 +49,7 @@ public class Student {
         return salary;
     }
 
-    public LocalDate getDob() {
+    public Date getDob() {
         return dob;
     }
 
@@ -57,6 +57,7 @@ public class Student {
         return grades;
     }
 
+    //metoda vracia String a vrati meno a priezvisko studenta
     public String printStudent(){
         return getFirstName()+" "+getLastName();
     }
