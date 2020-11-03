@@ -1,5 +1,7 @@
 package sk.kosickaakademia.nebus.school;
 
+import sk.kosickaakademia.nebus.school.hobby.*;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Main {
+
     public static void main(String[] args) {
         //vytvorenie pola typu Student
         Student[] studenti;
@@ -29,19 +32,46 @@ public class Main {
         Main.printAge(studenti);
         System.out.println();
 
+        //vytvorenie objektov
+        Book b1 = new Book("Cervena Ciapocka", "Margita Figuli");
+        Book b2 = new Book("Smolkovia", "Milan Rufus");
 
-        ///////////////////////////////
-        /*
-        //Main.printAge(studenti);
-        //System.out.println(studenti[0].getDob());
-        //String datum = convertDateToString(studenti[0].getDob());
-        //System.out.println(datum);
-        //Main.vypisPocetRokov(studenti);
+        Sport s1 = new Sport("Hokej");
+        Sport s2 = new Sport("Futbal");
 
-         */
-        //Main.zoradStudentov(studenti);
-        //System.out.println();
-        //Main.printStudentsWhereYearIsMoreThan2000SecondOption(studenti);
+        IndoorSport is1 = new IndoorSport("Basketbal");
+        IndoorSport is2 = new IndoorSport("Hadzana");
+
+        Movie m1 = new Movie("Fast and Furious", 2013);
+        Movie m2 = new Movie("Muskatier", 2005);
+
+        Music mu1 = new Music("Rock");
+        Music mu2 = new Music("jazz");
+
+        studenti[0].addHobby(b1);
+        studenti[0].addHobby(b2);
+        studenti[0].addHobby(s1);
+
+        studenti[5].addHobby(mu1);
+
+        studenti[2].addHobby(m1);
+
+        studenti[4].addHobby(mu2);
+        studenti[4].addHobby(s2);
+        studenti[4].addHobby(m2);
+
+        studenti[8].addHobby(is2);
+
+        studenti[9].addHobby(is1);
+
+        System.out.println("HOBBY");
+        for(int i = 0; i < studenti.length; i++){
+            studenti[i].printHobby();
+            System.out.println();
+        }
+
+        //zoradi studentov podla priemeru
+        zoradStudentov2(studenti);
     }
 
     //metoda na vytvorenie studentov
@@ -67,7 +97,7 @@ public class Main {
         s[2] = s3;
 
         //vytvorenie 4 studenta
-        Student s4 = new Student("Brano", "Kolodzej", new Grades(1, 1, 1),
+        Student s4 = new Student("Ludovit", "Kolodzej", new Grades(1, 1, 1),
                 ClassName.N2, createDob("1993-01-08"));
 
 
@@ -288,6 +318,26 @@ public class Main {
         }
     }
 
+    //bubble sort
+    private static void zoradStudentov2(Student[] studenti){
+        for(int i = 0; i < studenti.length-1; i++){
+            for(int j = 0; j < (studenti.length-1-i); j++){
+                if(studenti[j].getGrades().average() > studenti[j+1].getGrades().average()){
+                    Student pomocnaPremenna = studenti[j];
+                    studenti[j] = studenti[j+1];
+                    studenti[j+1] = pomocnaPremenna;
+                }
+            }
+        }
+        printAllStudents(studenti);
+    }
+
+    private static void printAllStudents(Student[] studenti){
+        for(int i = 0; i < studenti.length; i++){
+            System.out.println(studenti[i].getFirstName() + " " +
+                    studenti[i].getLastName() + " " + studenti[i].getGrades().average());
+        }
+    }
 
 
 }

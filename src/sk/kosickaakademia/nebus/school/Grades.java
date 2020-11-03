@@ -31,4 +31,8 @@ public class Grades {
     public String toString() {
         return "Grades: MAT " + math + " ENG" + eng + "PRO" + pro;
     }
+
+    public double average(){
+        return (double)((math+pro+eng)/3);
+    }
 }
