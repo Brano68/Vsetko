@@ -2,6 +2,8 @@ package sk.kosickaakademia.nebus.school;
 
 import sk.kosickaakademia.nebus.school.animal.Animal;
 import sk.kosickaakademia.nebus.school.animal.Cat;
+import sk.kosickaakademia.nebus.school.animal.Fish;
+import sk.kosickaakademia.nebus.school.animal.Turtle;
 import sk.kosickaakademia.nebus.school.hobby.*;
 
 import java.text.DateFormat;
@@ -80,11 +82,23 @@ public class Main {
         studenti[0].printAnimal();
         System.out.println("--------------");
 
+        Fish f1 = new Fish();
+        f1.setCount(5);
+        studenti[1].setPet(f1);
+        studenti[1].printAnimal();
+        System.out.println("--------------");
+
+        Turtle t2 = new Turtle();
+        t2.setName("Blesk");
+        studenti[2].setPet(t2);
+        studenti[2].printAnimal();
+        System.out.println("--------------");
+
         //zoradi studentov podla priemeru
         Student[] studenti2 = zoradStudentov2(studenti);
         printAllStudents(studenti2);
         System.out.println();
-        printAllStudents(studenti);
+        //printAllStudents(studenti);
 
 
 
