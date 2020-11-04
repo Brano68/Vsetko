@@ -1,5 +1,7 @@
 package sk.kosickaakademia.nebus.school;
 
+import sk.kosickaakademia.nebus.school.animal.Animal;
+import sk.kosickaakademia.nebus.school.animal.Cat;
 import sk.kosickaakademia.nebus.school.hobby.*;
 
 import java.text.DateFormat;
@@ -9,7 +11,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Main {
-
     public static void main(String[] args) {
         //vytvorenie pola typu Student
         Student[] studenti;
@@ -70,8 +71,23 @@ public class Main {
             System.out.println();
         }
 
+
+        ////pomocou interface teraz
+        System.out.println("-----PET------");
+        Animal macka = new Cat();
+        ((Cat)macka).setName("Matilda");
+        studenti[0].setPet(macka);
+        studenti[0].printAnimal();
+        System.out.println("--------------");
+
         //zoradi studentov podla priemeru
-        zoradStudentov2(studenti);
+        Student[] studenti2 = zoradStudentov2(studenti);
+        printAllStudents(studenti2);
+        System.out.println();
+        printAllStudents(studenti);
+
+
+
     }
 
     //metoda na vytvorenie studentov
@@ -319,7 +335,7 @@ public class Main {
     }
 
     //bubble sort
-    private static void zoradStudentov2(Student[] studenti){
+    private static Student[] zoradStudentov2(Student[] studenti){
         for(int i = 0; i < studenti.length-1; i++){
             for(int j = 0; j < (studenti.length-1-i); j++){
                 if(studenti[j].getGrades().average() > studenti[j+1].getGrades().average()){
@@ -329,7 +345,7 @@ public class Main {
                 }
             }
         }
-        printAllStudents(studenti);
+        return studenti;
     }
 
     private static void printAllStudents(Student[] studenti){
@@ -338,7 +354,6 @@ public class Main {
                     studenti[i].getLastName() + " " + studenti[i].getGrades().average());
         }
     }
-
 
 }
 
