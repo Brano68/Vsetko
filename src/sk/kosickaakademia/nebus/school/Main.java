@@ -99,8 +99,7 @@ public class Main {
         printAllStudents(studenti2);
         System.out.println();
         //printAllStudents(studenti);
-
-
+        
 
     }
 
