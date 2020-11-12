@@ -141,7 +141,7 @@ public class RWFile {
 
             //pole nakopirujeme do suboru
             for(int i = 0; i < pole.length; i++){
-                    fw.write(pole[i]);
+                fw.write(pole[i]);
             }
             fw.close();
 
