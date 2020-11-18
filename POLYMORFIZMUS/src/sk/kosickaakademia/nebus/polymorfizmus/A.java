@@ -27,4 +27,10 @@ public class A implements I1{
     public void print(){
         System.out.println("Class A: print()");
     }
+
+
+    public void VolajSamuSeba(){
+        M m = new M();
+        m.run(this);
+    }
 }

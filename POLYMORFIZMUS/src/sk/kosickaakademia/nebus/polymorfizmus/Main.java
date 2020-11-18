@@ -30,5 +30,10 @@ public class Main {
 
         A p7 = new A("mobil phone", "Milan");
 
+
+        ////treti sposob slovicka this
+        C p8 = new C();
+        p8.VolajSamuSeba();
+
     }
 }
