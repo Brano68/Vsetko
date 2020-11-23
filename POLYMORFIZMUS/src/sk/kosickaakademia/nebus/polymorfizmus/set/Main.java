@@ -58,4 +58,19 @@ public class Main {
         }
     }
 
+    //vypiste zoznam mien usporiadany podla abecedy
+    private static void usporiadajPodlaAbecedy(){
+
+    }
+
+    //vypis najdlhsie meno
+    private static void napisNajdlhsieMeno(){
+
+    }
+
+    //vypiste meno ktore sa opakuje najviac krat
+    private static void menoOpakujuceSaNajviacKrat(){
+
+    }
+
 }
