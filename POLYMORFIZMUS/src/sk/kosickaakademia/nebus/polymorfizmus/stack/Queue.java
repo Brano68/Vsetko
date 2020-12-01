@@ -28,17 +28,24 @@ public class Queue<T> {
         return capacity==array.size();
     }
 
-    public void enqueue(T value){
+    public void enqueue(T value)throws QueueException{
         if(isFull()){
-            System.out.println("Queue is full");
+            //System.out.println("Queue is full");
+            //try {
+            //    throw new QueueException("Queue is full!!!");
+            //} catch (QueueException e) {
+            //    e.printStackTrace();
+            //}
+            throw new QueueException("Queue is full!!!");
         }else {
             array.add(0,value);
         }
     }
 
-    public void dequeue(){
+    public void dequeue() throws QueueException{
         if(isEmpty()){
-            System.out.println("Queue is empty");
+            //System.out.println("Queue is empty");
+            throw new QueueException("Queue is full!!!");
         }else {
             array.remove(array.size()-1);
         }
@@ -57,6 +64,18 @@ public class Queue<T> {
         System.out.println();
         for(T t : array){
             System.out.print(t + " ");
+        }
+    }
+
+    public void printBack(){
+        System.out.println();
+        System.out.println("Queue od zadu");
+        if(array.isEmpty() == false){
+            for(int i = array.size()-1; i >= 0; i--){
+                System.out.print(array.get(i)+" ");
+            }
+        }else{
+            System.out.println("QUEUE IS EMPTY");
         }
     }
 

@@ -28,17 +28,19 @@ public class Stack<T> {
         return capacity==array.size();
     }
 
-    public void push(T value){
+    public void push(T value) throws StackException {
         if(isFull()){
-            System.out.println("Stack is full");
+            //System.out.println("Stack is full");
+            throw new StackException("Stack is full!!!");
         }else {
             array.add(value);
         }
     }
 
-    public void pop(){
+    public void pop() throws StackException {
         if(isEmpty()){
-            System.out.println("Stack is empty");
+            //System.out.println("Stack is empty");
+            throw new StackException("Stack is full!!!");
         }else {
             array.remove(array.size()-1);
         }
