@@ -30,6 +30,33 @@ public class Main {
         System.out.println();
         System.out.println("Bubble sort:");
         makeOrder(set);
+
+        //////////////////////////////////////////////////////////////
+        //2.sposob zadal cisla v riadku pisane po viacero
+        System.out.println();
+        System.out.println("2. sposob");
+        //printArray(readToArrayA_NumberAreInLine());
+        //readToArrayA_NumberAreInLine();
+        //readToArrayB_NumberAreInLine();
+        //1
+        System.out.println("What is different between aa.txt and bb.txt");
+        printArray(WhatAAtxtContainsDifferentThanBB());
+
+        //2
+        System.out.println();
+        System.out.println("What is different between bb.txt and aa.txt");
+        printArray(WhatBBtxtContainsDifferentThanAA());
+
+        //3
+        ArrayList<Integer> aa = readToArrayA_NumberAreInLine();
+        ArrayList<Integer> bb = readToArrayB_NumberAreInLine();
+        HashSet<Integer> sett = makeSet(aa,bb);
+        makeFilee(sett);
+
+        //4
+        System.out.println();
+        System.out.println("Bubble sort:");
+        makeOrder(sett);
     }
 
     //vracia arraylist a dokument
@@ -192,4 +219,132 @@ public class Main {
             System.out.print(pole[i] + " ");
         }
     }
+
+
+
+    //nedal cisla do riadku po jednom ale viacero
+    private static ArrayList readToArrayA_NumberAreInLine(){
+        ArrayList<Integer> a = new ArrayList<>();
+        try {
+            FileReader fr = new FileReader("resource/aa.txt");
+            BufferedReader reader = new BufferedReader(fr);
+            String cislo;
+            String ciselko = "";
+            while ((cislo = reader.readLine()) != null) {
+                for(int i = 0; i < cislo.length(); i++){
+                    if(cislo.charAt(i) != ' '){
+                        ciselko += cislo.charAt(i);
+                        continue;
+                    }
+                    if(cislo.charAt(i) == ' ' && ciselko != ""){
+                        a.add(Integer.parseInt(ciselko));
+                        ciselko = "";
+                    }
+                }
+                //a.add(Integer.parseInt(cislo));
+            }
+            fr.close();
+        }catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+        /*
+        for(Integer i:a){
+            System.out.print(i + " ");
+        }
+         */
+        return a;
+    }
+
+    private static ArrayList readToArrayB_NumberAreInLine(){
+        ArrayList<Integer> b = new ArrayList<>();
+        try {
+            FileReader fr = new FileReader("resource/bb.txt");
+            BufferedReader reader = new BufferedReader(fr);
+            String cislo;
+            String ciselko = "";
+            while ((cislo = reader.readLine()) != null) {
+                for(int i = 0; i < cislo.length(); i++){
+                    if(cislo.charAt(i) != ' '){
+                        ciselko += cislo.charAt(i);
+                        continue;
+                    }
+                    if(cislo.charAt(i) == ' ' && ciselko != ""){
+                        b.add(Integer.parseInt(ciselko));
+                        ciselko = "";
+                    }
+                }
+                //b.add(Integer.parseInt(cislo));
+            }
+            fr.close();
+        }catch (IOException e){
+            System.out.println("Error: " + e);
+        }
+        /*
+        for(Integer i:b){
+            System.out.print(i + " ");
+        }
+         */
+        return b;
+    }
+
+    private static ArrayList WhatAAtxtContainsDifferentThanBB(){
+        ArrayList<Integer> a = readToArrayA_NumberAreInLine();
+        ArrayList<Integer> b = readToArrayB_NumberAreInLine();
+        ArrayList<Integer> c = new ArrayList<>();
+
+        for(Integer i:a){
+            if(b.contains(i)){
+                continue;
+            }else{
+                c.add(i);
+            }
+        }
+    /*
+    for (Integer i:c){
+        System.out.print(i + " ");
+    }
+     */
+        return c;
+    }
+
+    private static ArrayList WhatBBtxtContainsDifferentThanAA(){
+        ArrayList<Integer> a = readToArrayA_NumberAreInLine();
+        ArrayList<Integer> b = readToArrayB_NumberAreInLine();
+        ArrayList<Integer> c = new ArrayList<>();
+
+        for(Integer i:b){
+            if(a.contains(i)){
+                continue;
+            }else{
+                c.add(i);
+            }
+        }
+        /*
+        for (Integer i:c){
+            System.out.print(i + " ");
+        }
+         */
+        return c;
+    }
+
+    private static void makeFilee(HashSet<Integer> set){
+        try {
+            File file = new File("output/" + "cc.txt");
+            file.createNewFile();
+            FileWriter fw = new FileWriter(file);
+
+            for(Integer i:set){
+                String cislo = String.valueOf(i);
+                fw.write(cislo + '\n');
+            }
+
+            fw.close();
+            System.out.println("File c.txt has been created sucessfully.");
+        }catch (IOException ex){
+            ex.printStackTrace();
+        }
+    }
+
+
+
 }
