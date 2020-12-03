@@ -6,6 +6,7 @@ import java.util.HashSet;
 
 public class Main {
     public static void main(String[] args) {
+
         //1
         System.out.println("What is different between a.txt and b.txt");
         printArray(WhatAtxtContainsDifferentThanB());
@@ -34,7 +35,10 @@ public class Main {
         //////////////////////////////////////////////////////////////
         //2.sposob zadal cisla v riadku pisane po viacero
         System.out.println();
+        System.out.println();
         System.out.println("2. sposob");
+        //System.out.println();
+        System.out.println("Ucitelove subory: ");
         //printArray(readToArrayA_NumberAreInLine());
         //readToArrayA_NumberAreInLine();
         //readToArrayB_NumberAreInLine();
@@ -232,11 +236,19 @@ public class Main {
             String ciselko = "";
             while ((cislo = reader.readLine()) != null) {
                 for(int i = 0; i < cislo.length(); i++){
-                    if(cislo.charAt(i) != ' '){
+                    //if(cislo.charAt(i) != ' '){
+                    if((cislo.charAt(i) >= '0' && cislo.charAt(i)<= '9') || cislo.charAt(i) == '-'){
                         ciselko += cislo.charAt(i);
+                        //treba este osetrit koniec riadku ked konci riadok a novy
+                        //riadok zacina cislo tak ich spojilo toto urobi medzeru
+                        if(i == cislo.length()-1 && cislo.charAt(i) >= '0'){
+                            a.add(Integer.parseInt(ciselko));
+                            ciselko = "";
+                        }
                         continue;
                     }
-                    if(cislo.charAt(i) == ' ' && ciselko != ""){
+                    //if(cislo.charAt(i) == ' ' && ciselko != ""){
+                    if(ciselko.equals("") == false){
                         a.add(Integer.parseInt(ciselko));
                         ciselko = "";
                     }
@@ -248,10 +260,14 @@ public class Main {
             System.out.println("Error: " + e);
         }
         /*
+        System.out.println();
+        System.out.println("SKUSAM VYPIS");
+        System.out.println();
         for(Integer i:a){
             System.out.print(i + " ");
         }
          */
+
         return a;
     }
 
@@ -264,16 +280,24 @@ public class Main {
             String ciselko = "";
             while ((cislo = reader.readLine()) != null) {
                 for(int i = 0; i < cislo.length(); i++){
-                    if(cislo.charAt(i) != ' '){
+                    //if(cislo.charAt(i) != ' '){
+                    if((cislo.charAt(i) >= '0' && cislo.charAt(i)<= '9') || cislo.charAt(i) == '-'){
                         ciselko += cislo.charAt(i);
+                        //treba este osetrit koniec riadku ked konci riadok a novy
+                        //riadok zacina cislo tak ich spojilo toto urobi medzeru
+                        if(i == cislo.length()-1 && cislo.charAt(i) >= '0'){
+                            b.add(Integer.parseInt(ciselko));
+                            ciselko = "";
+                        }
                         continue;
                     }
-                    if(cislo.charAt(i) == ' ' && ciselko != ""){
+                    //if(cislo.charAt(i) == ' ' && ciselko != ""){
+                    if(ciselko.equals("") == false){
                         b.add(Integer.parseInt(ciselko));
                         ciselko = "";
                     }
                 }
-                //b.add(Integer.parseInt(cislo));
+                //a.add(Integer.parseInt(cislo));
             }
             fr.close();
         }catch (IOException e){
@@ -339,7 +363,8 @@ public class Main {
             }
 
             fw.close();
-            System.out.println("File c.txt has been created sucessfully.");
+            System.out.println();
+            System.out.println("File cc.txt has been created sucessfully.");
         }catch (IOException ex){
             ex.printStackTrace();
         }
